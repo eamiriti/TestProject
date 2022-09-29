@@ -1,0 +1,9 @@
+import React from "react";
+import Lists2 from "./Lists2.js";
+const App=()=>{
+return (
+  <Lists2 />
+)
+
+}
+export default App;

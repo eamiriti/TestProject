@@ -1,0 +1,9 @@
+import React from "react";
+import Screens from "./Screens2.js";
+const App=()=>{
+return (
+  <Screens />
+)
+
+}
+export default App;

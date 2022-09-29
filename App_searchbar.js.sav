@@ -1,0 +1,20 @@
+import React, { Component } from "react";
+import { StyleSheet, Text, View, FlatList } from "react-native";
+import SearchBar1 from "./SearchBar1";
+
+const App=()=>{
+return (
+  <SearchBar1/>
+)
+
+}
+  
+export default App;
+  
+const styles = StyleSheet.create({
+  container: {
+    marginTop: 30,
+    padding: 2,
+  }
+
+});

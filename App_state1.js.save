@@ -1,0 +1,39 @@
+//App.js
+
+import React, {useState} from "react"
+import {View, Text, StyleSheet,SafeAreaView, Button} from "react-native"
+
+const App=()=>{
+return (
+  <CountComponent />
+);
+}
+//CountComponent
+const CountComponent=()=>{
+ const [count, setCount]=useState(0)
+  return (
+    
+    <SafeAreaView>
+
+    <View style={styles.text}>
+      <Text style={styles.text}>
+        Count={count}
+      </Text>
+      <Button title="+" color="#2196F3" 
+	  onPress={()=>setCount(count+1)} />
+    </View>
+    </SafeAreaView>
+
+  );
+}
+
+
+
+styles= StyleSheet.create({
+text:{
+color:"#FF0000",
+fontSize:20,
+fontWeight:"bold"
+}
+})
+export default App

@@ -1,0 +1,22 @@
+//App.js
+
+import React from "react"
+import {View, Text, StyleSheet,SafeAreaView} from "react-native"
+import TouchableOpacity1 from "./TouchableOpacity.js"
+
+const App=()=>{
+return (
+ <SafeAreaView>
+ <View  style={styles.container}>
+ <TouchableOpacity1 />
+ </View>
+  </SafeAreaView>
+)
+}
+styles= StyleSheet.create({
+text:{
+color:"#FF0000",
+fontSize:20
+}
+})
+export default App

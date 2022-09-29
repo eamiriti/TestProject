@@ -1,0 +1,178 @@
+//App.js
+
+import React, { useState } from "react"
+import {NavigationContainer, useNavigationState} from "@react-navigation/native"
+import {createNativeStackNavigator} from "@react-navigation/native-stack"
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import {View, Text, StyleSheet,SafeAreaView, Button} from "react-native"
+import { SearchBar } from "react-native-screens"
+const App=()=>{
+const Tab = createBottomTabNavigator();
+return (
+   <NavigationContainer>
+    <Tab.Navigator initialRouteName="TabTwo" screenOptions={{
+    tabBarStyle: { backgroundColor:"#FFFFFF"},tabBarActiveTintColor: 'red',
+    tabBarInactiveTintColor: 'gray', tabBarLabelStyle:{fontSize:18, fontWeight:"bold"}}
+  }>
+      <Tab.Screen name="TabOne" component={TabOne} options={{headerShown:false}} />
+      <Tab.Screen name="TabTwo" component={TabTwo} options={{headerShown:false}} />
+    </Tab.Navigator>
+    </NavigationContainer>
+  );
+}
+const TabOne=()=>{
+  const Stack= createNativeStackNavigator()
+return (
+  //<NavigationContainer>
+    <Stack.Navigator initialRouteName="ScreenOne">
+    <Stack.Screen name="ScreenOne" component={ScreenOne}
+    options={{title:"Screen 1"}}    />
+     <Stack.Screen name="ScreenTwo" component={ScreenTwo}
+    options={{title:"Screen 2",headerStyle: {
+      backgroundColor: 'blue'},headerTintColor: '#fff',headerTitleStyle: {
+        fontWeight: 'bold' },statusBarColor:"red"}}   initialParams={{colors:"blue"}}/>
+    <Stack.Screen name="ScreenThree" component={ScreenThree}
+    options={{title:"Screen 3"}}   initialParams={{colors:"green",textColor:"#FFF"}}/>
+    </Stack.Navigator>
+  //</NavigationContainer>
+)
+}
+
+const TabTwo=()=>{
+  const Stack= createNativeStackNavigator()
+  return (
+    //<NavigationContainer>
+      <Stack.Navigator initialRouteName="ScreenFour">
+      <Stack.Screen name="ScreenFour" component={ScreenFour}
+      options={{title:"Screen 4",headerStyle: {
+        backgroundColor: 'red'},headerTintColor: '#fff',headerTitleStyle: {
+          fontWeight: 'bold' },statusBarColor:"red"}}    />
+       <Stack.Screen name="ScreenFive" component={ScreenFive}
+      options={{title:"Screen 5",headerStyle: {
+        backgroundColor: 'yellow'},headerTintColor: '#fff',headerTitleStyle: {
+          fontWeight: 'bold' },statusBarColor:"yellow"}}   initialParams={{colors:"yellow"}}/>
+      <Stack.Screen name="ScreenSix" component={ScreenSix}
+      options={{title:"Screen six"}}   initialParams={{colors:"purple",textColor:"#FFF"}}/>
+      </Stack.Navigator>
+   // </NavigationContainer>
+  )
+  }
+
+const ScreenOne=({route, navigation})=>{
+  const searchFilterFunction=()=>{}
+  const [search, setSearch] = useState('');
+  return (
+    <SafeAreaView>
+    <View style={styles.container}>
+    <SearchBar round
+          searchIcon={{ size: 24 }}
+          onChangeText={(text) => searchFilterFunction(text)}
+          onClear={(text) => searchFilterFunction('')}
+          placeholder="Type Here..."
+          value={search}/>
+           <Button title="Go to Screen 2" color="blue" onPress={()=>navigation.navigate("ScreenTwo",{color:"blue"})}/>
+       <Button title="Go to Screen 3" color="green"
+       onPress={()=>navigation.navigate("ScreenThree",{color:"green",size:"20"})}/>
+    </View>
+    </SafeAreaView>
+
+  );
+}
+const ScreenTwo=({route, navigation})=>{
+  return (
+    <SafeAreaView>
+
+    <View style={styles.container}>
+      <Text style={styles.text2}>
+        This screen is color {route.params.colors}
+      </Text>
+    </View>
+    </SafeAreaView>
+
+  );
+}
+const ScreenThree=({route, navigation})=>{
+
+//-----------------
+React.useLayoutEffect(() => {
+  navigation.setOptions({headerStyle:{backgroundColor:route.params.colors}
+  ,headerTintColor:route.params.textColor});
+}, [navigation]);
+//---------------
+  return (
+    
+    <SafeAreaView>
+
+    <View style={styles.container}>
+      <Text style={styles.text3}>
+        This screen is color {route.params.colors}
+      </Text>
+    </View>
+    </SafeAreaView>
+
+  );
+}
+//-----------------------------------------------------------------------------
+const ScreenFour=({route, navigation})=>{
+  return (
+    <SafeAreaView>
+
+    <View style={styles.container}>
+       <Button title="Go to Screen 5" color="blue" onPress={()=>navigation.navigate("ScreenFive",{color:"Yellow"})}/>
+       <Button title="Go to Screen 6" color="purple"
+       onPress={()=>navigation.navigate("ScreenSix",{color:"purple",size:"20"})}/>
+    </View>
+    </SafeAreaView>
+
+  );
+}
+const ScreenFive=({route, navigation})=>{
+  return (
+    <SafeAreaView>
+
+    <View style={styles.container}>
+      <Text style={styles.text2}>
+        This screen is color {route.params.colors}
+      </Text>
+    </View>
+    </SafeAreaView>
+
+  );
+}
+const ScreenSix=({route, navigation})=>{
+
+//-----------------
+React.useLayoutEffect(() => {
+  navigation.setOptions({headerStyle:{backgroundColor:route.params.colors}
+  ,headerTintColor:route.params.textColor});
+}, [navigation]);
+//---------------
+  return (
+    
+    <SafeAreaView>
+
+    <View style={styles.container}>
+      <Text style={styles.text3}>
+        This screen is color {route.params.colors}
+      </Text>
+    </View>
+    </SafeAreaView>
+
+  );
+}
+
+styles= StyleSheet.create({
+  container:{
+    flexDirection:"row",
+    padding:40,
+    justifyContent:"space-evenly"
+  },
+  text1:{
+    fontSize:20
+    },
+    text2:{
+      fontSize:20
+      }
+    })
+
+export default App

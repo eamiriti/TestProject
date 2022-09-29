@@ -1,0 +1,84 @@
+//App.js
+
+import React from "react"
+import {NavigationContainer} from "@react-navigation/native"
+import {createNativeStackNavigator} from "@react-navigation/native-stack"
+import {View, Text, StyleSheet,SafeAreaView, Button} from "react-native"
+
+
+const App=()=>{
+const Stack= createNativeStackNavigator()
+return (
+  <NavigationContainer>
+    <Stack.Navigator initialRouteName="ScreenOne">
+    <Stack.Screen name="ScreenOne" component={ScreenOne}
+    options={{title:"Screen 1"}}    />
+     <Stack.Screen name="ScreenTwo" component={ScreenTwo}
+    options={{title:"Screen 2",headerStyle: {
+      backgroundColor: 'blue'},headerTintColor: '#fff',headerTitleStyle: {
+        fontWeight: 'bold' },statusBarColor:"red"}}   initialParams={{colors:"blue"}}/>
+    <Stack.Screen name="ScreenThree" component={ScreenThree}
+    options={{title:"Screen 3"}}   initialParams={{colors:"green",textColor:"#FFF"}}/>
+    </Stack.Navigator>
+  </NavigationContainer>
+);
+}
+
+const ScreenOne=({route, navigation})=>{
+  return (
+    <SafeAreaView>
+
+    <View style={styles.container}>
+       <Button title="Go to Screen 2" color="blue" onPress={()=>navigation.navigate("ScreenTwo",{color:"blue"})}/>
+       <Button title="Go to Screen 3" color="green"
+       onPress={()=>navigation.navigate("ScreenThree",{color:"green",size:"20"})}/>
+    </View>
+    </SafeAreaView>
+
+  );
+}
+const ScreenTwo=({route, navigation})=>{
+  return (
+    <SafeAreaView>
+
+    <View style={styles.container}>
+      <Text style={styles.text2}>
+        This screen is color {route.params.colors}
+      </Text>
+    </View>
+    </SafeAreaView>
+
+  );
+}
+const ScreenThree=({route, navigation})=>{
+
+//-----------------
+React.useLayoutEffect(() => {
+  navigation.setOptions({headerStyle:{backgroundColor:route.params.colors}
+  ,headerTintColor:route.params.textColor});
+}, [navigation]);
+//---------------
+  return (
+    
+    <SafeAreaView>
+
+    <View style={styles.container}>
+      <Text style={styles.text3}>
+        This screen is color {route.params.colors}
+      </Text>
+    </View>
+    </SafeAreaView>
+
+  );
+}
+
+styles= StyleSheet.create({
+  text1:{
+    fontSize:20
+    },
+    text2:{
+      fontSize:20
+      }
+    })
+
+export default App

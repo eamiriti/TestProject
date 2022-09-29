@@ -1,0 +1,39 @@
+//App.js
+
+import React, {useState} from "react"
+import {View, Text, StyleSheet,SafeAreaView, Button, Alert} from "react-native"
+
+const App=()=>{
+return (
+  <PersonComponent />
+);
+}
+//CountComponent
+const PersonComponent=()=>{
+ const [person, setPerson]=useState({first_name:"George", surname:"Michael"})
+ 
+ 
+ return (
+  
+    <SafeAreaView>
+
+    <View style={styles.text}>
+      <Text style={styles.text}>
+        Name: {person.first_name} {person.surname}
+      </Text>
+      <Button title="change name" color="#2196F3" 
+	  onPress={()=>setPerson(person1=> {return { ...person1,first_name:"John"}}) } />
+
+    </View>
+    </SafeAreaView>
+
+  );
+}
+styles= StyleSheet.create({
+text:{
+color:"#FF0000",
+fontSize:20,
+fontWeight:"bold"
+}
+})
+export default App

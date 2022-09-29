@@ -1,0 +1,21 @@
+//Creating the first app
+
+import React from "react"
+import {View, Text, StyleSheet,SafeAreaView} from "react-native"
+
+const App=()=>{
+return (
+ <SafeAreaView>
+ <View>
+ <Text style={styles.text}>Hello World</Text>
+ </View>
+  </SafeAreaView>
+)
+}
+styles= StyleSheet.create({
+text:{
+color:"#FF0000",
+fontSize:20
+}
+})
+export default App
